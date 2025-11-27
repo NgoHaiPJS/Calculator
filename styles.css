@@ -134,19 +134,33 @@ body{background:linear-gradient(180deg,#071044 0%,#02061a 100%);display:flex;ali
 /* mobile responsiveness for better fit */
 @media(max-width:768px){
   .calculator{width:360px;max-width:95%}
+  .page{padding:20px}
   .modal-content{width:95%;padding:16px}
   .confirm-panel{width:500px;max-width:95%}
-  .plans{gap:12px}
-  .plan-center .fire-badge{top:8px;right:8px}
+  .plans{gap:12px;flex-direction:column}
+  .plan{padding:14px}
+  .plan-badge{font-size:14px;padding:5px 7px}
+  .plan-price{font-size:24px}
+  .plan-features{font-size:12px}
+  .plan-center .fire-badge{top:8px;right:8px;font-size:16px}
 }
 
 @media(max-width:480px){
   .calculator{width:320px;max-width:98%;padding:12px}
+  .page{padding:10px}
   .modal-content{width:98%;padding:12px}
   .confirm-panel{width:420px;max-width:98%;padding:20px}
+  .plans{gap:8px}
+  .plan{padding:12px}
+  .plan-badge{font-size:13px;padding:4px 6px}
+  .plan-price{font-size:20px}
+  .plan-features{font-size:11px}
+  .plan-features li{margin:6px 0}
+  .choose{padding:10px 12px}
   .btn{font-size:20px}
   .main-display{font-size:48px}
   .small-display{font-size:12px}
+  .modal-title{font-size:16px}
 }
 
 /* small unobtrusive signature in the corner */
