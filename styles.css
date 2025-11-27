@@ -131,5 +131,23 @@ body{background:linear-gradient(180deg,#071044 0%,#02061a 100%);display:flex;ali
   .result-box{font-size:36px}
 }
 
+/* mobile responsiveness for better fit */
+@media(max-width:768px){
+  .calculator{width:360px;max-width:95%}
+  .modal-content{width:95%;padding:16px}
+  .confirm-panel{width:500px;max-width:95%}
+  .plans{gap:12px}
+  .plan-center .fire-badge{top:8px;right:8px}
+}
+
+@media(max-width:480px){
+  .calculator{width:320px;max-width:98%;padding:12px}
+  .modal-content{width:98%;padding:12px}
+  .confirm-panel{width:420px;max-width:98%;padding:20px}
+  .btn{font-size:20px}
+  .main-display{font-size:48px}
+  .small-display{font-size:12px}
+}
+
 /* small unobtrusive signature in the corner */
 .signature{position:fixed;left:18px;bottom:14px;font-size:12px;color:rgba(158,168,189,0.8);z-index:220;pointer-events:none;font-weight:600}
