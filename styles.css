@@ -99,6 +99,32 @@ body{background:linear-gradient(180deg,#071044 0%,#02061a 100%);display:flex;ali
 
 .result-panel .choose{width:60%;margin:0 auto}
 
+/* Confirm panel styles */
+.confirm-panel{width:600px;padding:32px;border-radius:16px;text-align:left}
+.confirm-title{font-size:20px;margin-bottom:12px;color:#e6f0ff}
+.confirm-sub{font-size:13px;color:#9aa0b6;margin-bottom:20px}
+.confirm-row{display:flex;justify-content:space-between;align-items:center;padding:14px 0;border-bottom:1px dashed rgba(255,255,255,0.04)}
+.confirm-row.total{border-top:1px dashed rgba(255,255,255,0.06);margin-top:12px;padding-top:16px}
+.confirm-row .label{color:#9aa0b6;font-size:13px}
+.confirm-row .value{color:#e6e6f0;font-weight:800}
+
+.card-box{display:flex;gap:12px;background:linear-gradient(180deg,#081525,#06121f);padding:12px;border-radius:10px;align-items:center}
+.mc-chip{background:linear-gradient(90deg,#ffde7a,#ffb86b);padding:8px 10px;border-radius:8px;color:#071028;font-weight:800}
+.mc-name{font-weight:700;color:#e6e6f0}
+.mc-num{color:#9aa0b6}
+
+.confirm-desc{font-size:13px;color:#9aa0b6;margin:12px 0}
+.confirm-actions{display:flex;justify-content:flex-end;gap:10px;margin-top:8px}
+.confirm-actions .btn{padding:8px 12px;border-radius:8px;font-weight:800;font-size:14px}
+.confirm-actions .choose{padding:10px 14px}
+
+/* hover glow for confirm and cancel buttons */
+.confirm-actions button:hover {
+  box-shadow: 0 20px 48px rgba(255,168,80,0.36), 0 0 28px rgba(255,168,80,0.12);
+  transform: translateY(-4px);
+  transition: transform 0.15s, box-shadow 0.18s, filter 0.18s;
+}
+
 /* small responsive tweaks */
 @media(max-width:520px){
   .calculator{width:92%;padding:14px}

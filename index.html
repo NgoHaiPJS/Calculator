@@ -49,7 +49,6 @@
     <div class="modal-backdrop" id="backdrop"></div>
     <div class="modal-content" role="dialog" aria-modal="true">
       <h3 class="modal-title">Choose a plan</h3>
-      <p class="modal-sub">No credit card required</p>
       <div class="plans">
         <div class="plan plan-left">
           <div class="plan-badge">BASIC</div>
@@ -101,6 +100,51 @@
       <div class="spinner" id="spinner"></div>
       <h3>Processing Payment</h3>
       <p>Securely processing your payment...</p>
+    </div>
+  </div>
+
+  <!-- Confirmation screen (appears after choosing a plan, before processing) -->
+  <div id="confirmScreen" class="screen hidden" aria-hidden="true">
+    <div class="panel confirm-panel">
+      <h3 class="confirm-title">Confirmation</h3>
+      <p class="confirm-sub">Please confirm the following transaction:</p>
+
+      <div class="confirm-row card-box">
+        <div class="card-left">
+          <div class="mc-chip">Mastercard</div>
+        </div>
+        <div class="card-right">
+          <div class="mc-name">Mẹ mày béo</div>
+          <div class="mc-num">•••• •••• •••• 3618</div>
+        </div>
+      </div>
+
+      <div class="confirm-row">
+        <div class="label">Available balance</div>
+        <div class="value">$67,000,000</div>
+      </div>
+
+      <div class="confirm-row">
+        <div class="label">Amount</div>
+        <div class="value" id="confirmAmount">$0</div>
+      </div>
+
+      <div class="confirm-row">
+        <div class="label">Fee</div>
+        <div class="value">$3,600</div>
+      </div>
+
+      <div class="confirm-desc">Tiền donate (ăn chặn) mua rau má 🐧</div>
+
+      <div class="confirm-row total">
+        <div class="label">Total amount</div>
+        <div class="value" id="confirmTotal">$0</div>
+      </div>
+
+      <div class="confirm-actions">
+        <button id="confirmCancel" class="btn control">Cancel</button>
+        <button id="confirmAccept" class="choose">Confirm</button>
+      </div>
     </div>
   </div>
 
