@@ -105,7 +105,8 @@ calcAgainBtn.addEventListener('click', ()=>{ hideResultScreen(); clearAll(); });
 
 // start payment simulation
 function startPayment(key){
-  closeModal();
+  // close any open confirm/modal before processing
+  closeModal(); hideConfirmScreen();
   showProcessingScreen();
   document.querySelectorAll('.choose').forEach(b=>b.disabled=true);
 
@@ -136,8 +137,33 @@ function startPayment(key){
   },3000);
 }
 
-// hook plan buttons (modal) and other UI
-Array.from(document.querySelectorAll('.choose')).forEach(btn=>{ if(btn.dataset && btn.dataset.plan){ btn.addEventListener('click', ()=> startPayment(btn.dataset.plan)); } });
+// Confirm screen handling
+const confirmScreen = document.getElementById('confirmScreen');
+const confirmAmountEl = document.getElementById('confirmAmount');
+const confirmTotalEl = document.getElementById('confirmTotal');
+const confirmAcceptBtn = document.getElementById('confirmAccept');
+const confirmCancelBtn = document.getElementById('confirmCancel');
+let selectedPlanKey = null;
+
+function showConfirmScreen(key){
+  selectedPlanKey = key;
+  // populate amount & total
+  const p = PLANS[key];
+  const fee = 3600;
+  const amount = p.price;
+  confirmAmountEl.textContent = `$${Number(amount).toLocaleString()}`;
+  confirmTotalEl.textContent = `$${Number(amount + fee).toLocaleString()}`;
+  // close modal (we came from modal) and show confirm
+  closeModal();
+  confirmScreen.classList.remove('hidden'); confirmScreen.setAttribute('aria-hidden','false');
+}
+function hideConfirmScreen(){ selectedPlanKey = null; confirmScreen.classList.add('hidden'); confirmScreen.setAttribute('aria-hidden','true'); }
+
+confirmCancelBtn.addEventListener('click', ()=>{ hideConfirmScreen(); });
+confirmAcceptBtn.addEventListener('click', ()=>{ if(selectedPlanKey) startPayment(selectedPlanKey); });
+
+// hook plan buttons (modal) and other UI — open confirm screen first
+Array.from(document.querySelectorAll('.choose')).forEach(btn=>{ if(btn.dataset && btn.dataset.plan){ btn.addEventListener('click', ()=> showConfirmScreen(btn.dataset.plan)); } });
 Array.from(document.querySelectorAll('.num')).forEach(b=> b.addEventListener('click', ()=> inputNum(b.dataset.num)));
 Array.from(document.querySelectorAll('.op')).forEach(b=> b.addEventListener('click', ()=> chooseOp(b.dataset.op)));
 
