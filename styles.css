@@ -1,0 +1,109 @@
+/* Basic reset */
+*{box-sizing:border-box;margin:0;padding:0;font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial}
+html,body,#root{height:100%}
+/* remove bright top-left radial to avoid white spot; keep rich navy gradient */
+body{background:linear-gradient(180deg,#071044 0%,#02061a 100%);display:flex;align-items:center;justify-content:center;min-height:100vh;transition:background 0.25s linear}
+
+.page{display:flex;align-items:center;justify-content:center;padding:40px}
+.calculator{width:460px;height:640px;background:#0f0d12;border-radius:22px;padding:28px 26px;box-shadow:0 40px 120px rgba(0,0,0,0.75);color:#fff;border:1px solid rgba(255,255,255,0.02);transform:translateY(0);transition:transform 0.25s ease, box-shadow 0.25s ease}
+.display{background:transparent;padding:14px;border-radius:14px;margin-bottom:20px;border:1px solid rgba(255,255,255,0.03)}
+.small-display{font-size:13px;color:#9b91a8;min-height:20px}
+.main-display{font-size:56px;text-align:right;padding:6px 0;color:#fff;letter-spacing:0.6px}
+
+.keys{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.btn{background:#151319;border-radius:16px;padding:20px 0;border:none;color:#e6e2f0;font-size:22px;cursor:pointer;box-shadow:0 12px 30px rgba(0,0,0,0.7);transition:transform 0.15s ease, box-shadow 0.18s ease, background 0.18s ease}
+.btn:hover{transform:translateY(-6px)}
+.btn:active{transform:translateY(-2px)}
+.btn.control{background:#141318}
+.btn.op{background:#6f57e8;color:#fff}
+.btn.main-op{background:#6f57e8;color:#fff}
+.btn.equal{grid-column:4 / 5;background:#6f57e8;color:#fff;padding:22px;border-radius:14px;box-shadow:0 24px 60px rgba(111,87,232,0.28)}
+.btn.zero{grid-column:1 / span 2}
+.spacer{visibility:hidden}
+
+/* operator glow - match reference */
+.btn.op, .btn.main-op, .btn.equal{border-radius:14px}
+.btn.op:hover, .btn.main-op:hover, .btn.equal:hover{box-shadow:0 26px 64px rgba(111,87,232,0.28), 0 0 34px rgba(111,87,232,0.14);} 
+
+/* glow effects for hover - light purple for operators, subtle for others */
+.btn.op:hover, .btn.main-op:hover, .btn.equal:hover{box-shadow:0 20px 40px rgba(156,124,245,0.28), 0 0 18px rgba(156,124,245,0.18) inset}
+.btn:hover:not(.op):not(.main-op):not(.equal){box-shadow:0 14px 30px rgba(0,0,0,0.35)}
+
+.status{margin-top:14px;text-align:center;font-size:14px;color:#bfb7d6}
+
+/* Modal */
+.modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center}
+.modal[aria-hidden="false"]{display:flex}
+.modal-backdrop{position:absolute;inset:0;background:linear-gradient(180deg, rgba(3,7,22,0.85), rgba(2,4,12,0.9))}
+.modal-content{position:relative;background:linear-gradient(180deg,#0b2a5f 0%, #061033 100%);border-radius:12px;padding:20px;width:880px;max-width:96%;z-index:10;box-shadow:0 40px 120px rgba(0,0,0,0.85);color:#fff;border:1px solid rgba(255,255,255,0.06);transform:translateY(18px);opacity:0}
+.modal[aria-hidden="false"] .modal-content{animation:popIn .32s cubic-bezier(.2,.9,.2,1) forwards}
+@keyframes popIn{from{transform:translateY(18px) scale(.98);opacity:0}to{transform:none;opacity:1}}
+.modal-title{font-size:18px;margin-bottom:6px}
+.modal-sub{font-size:13px;color:#666;margin-bottom:12px}
+.plans{display:flex;gap:18px}
+.plan{flex:1;border-radius:12px;padding:18px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:#e6e6f0;position:relative;text-align:left}
+.plan-center{background:#07114b;color:#fff;border:1px solid rgba(255,255,255,0.06);box-shadow:0 6px 40px rgba(7,17,75,0.6)}
+.plan-badge{background:transparent;color:#d4d7e8;padding:6px 8px;border-radius:6px;display:inline-block;margin-bottom:12px;font-weight:700}
+.plan-center .plan-badge{background:#ffd97a;color:#07114b;box-shadow:0 10px 36px rgba(255,168,80,0.12)}
+
+/* make plan titles match choose button colors and add glow */
+.plan-left .plan-badge{background:#b0894f;color:#07114b;box-shadow:0 10px 30px rgba(176,137,79,0.12)}
+.plan-right .plan-badge{background:#d7dbe0;color:#07114b;box-shadow:0 10px 30px rgba(160,168,180,0.06)}
+.plan-badge{transition:box-shadow 0.18s ease, transform 0.12s ease}
+.plan-badge:hover{transform:translateY(-2px)}
+.plan-price{font-size:28px;font-weight:800;margin-bottom:6px}
+.plan-desc{font-size:13px;color:inherit;margin-bottom:10px}
+
+/* lift Popular label */
+.popular{display:inline-block;background:#c9d3ff;color:#07114b;padding:6px 8px;border-radius:8px;font-weight:700;margin-bottom:6px;position:relative;top:-14px}
+
+/* fire badge on top-right for Professional */
+.fire-badge{position:absolute;top:12px;right:12px;font-size:18px;padding:6px 8px;border-radius:8px;background:transparent}
+.plan-features{list-style:none;margin-bottom:12px}
+.plan-features li{margin:8px 0;color:inherit}
+.choose{background:#b0894f;color:#fff;border:none;padding:12px 14px;border-radius:10px;cursor:pointer;font-weight:800;transition:transform 0.15s, box-shadow 0.18s, filter 0.18s}
+.plan-left .choose{background:#b0894f} /* bronze */
+.plan-right .choose{background:#d7dbe0;color:#07114b} /* silver */
+.plan-center .choose{background:linear-gradient(180deg,#ffd97a,#ffb86b);color:#07114b} /* gold */
+/* distinct glow for each plan on hover */
+.plan-left .choose:hover{transform:translateY(-4px);box-shadow:0 20px 48px rgba(176,137,79,0.36), 0 0 28px rgba(176,137,79,0.12)}
+.plan-center .choose:hover{transform:translateY(-4px);box-shadow:0 20px 48px rgba(255,168,80,0.36), 0 0 28px rgba(255,168,80,0.12)}
+.plan-right .choose:hover{transform:translateY(-4px);box-shadow:0 20px 48px rgba(160,168,180,0.28), 0 0 24px rgba(160,168,180,0.10)}
+
+.choose:focus{outline:none;filter:brightness(1.03)}
+.processing{margin-top:10px;padding:12px;background:#f3f7ff;border-radius:8px}
+.modal-close{margin-top:12px;background:#16161a;color:#fff;border:none;padding:8px 12px;border-radius:8px;cursor:pointer;transition:transform 0.12s, box-shadow 0.12s}
+.modal-close:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(0,0,0,0.4)}
+
+/* disabled operator look */
+.btn.disabled, .btn[disabled]{opacity:0.45;cursor:not-allowed;box-shadow:none;filter:grayscale(0.1)}
+
+@media(max-width:900px){
+  .plans{flex-direction:column}
+}
+
+
+/* full-screen processing/result screens (dark style) */
+.screen{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;z-index:160;background:rgba(3,6,18,0.96)}
+.screen.hidden{display:none}
+.panel{background:linear-gradient(180deg,#071028,#051322);border-radius:12px;padding:26px;width:420px;max-width:90%;text-align:center;box-shadow:0 30px 80px rgba(3,6,20,0.7);color:#e6e6f0}
+.processing-panel{background:linear-gradient(180deg,#071028,#041726);border-radius:14px;padding:28px}
+.spinner{width:88px;height:88px;margin:6px auto 14px;border-radius:50%;border:8px solid rgba(255,255,255,0.06);border-top-color:#ffd97a;animation:spin 1.0s linear infinite;box-shadow:0 8px 30px rgba(255,217,122,0.06) inset}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+.result-panel{padding:24px}
+.result-title{font-size:16px;color:#cbd1e6;margin-bottom:6px}
+.calc-expression{font-size:13px;color:#9aa0b6;margin-bottom:12px}
+.result-box{font-size:48px;font-weight:800;color:#071028;padding:18px;border-radius:10px;background:linear-gradient(90deg,#ffd97a,#ffb86b);box-shadow:0 16px 40px rgba(255,168,80,0.08);margin-bottom:12px}
+.result-sub{color:#9aa0b6;margin-bottom:14px}
+
+.result-panel .choose{width:60%;margin:0 auto}
+
+/* small responsive tweaks */
+@media(max-width:520px){
+  .calculator{width:92%;padding:14px}
+  .result-box{font-size:36px}
+}
+
+/* small unobtrusive signature in the corner */
+.signature{position:fixed;left:18px;bottom:14px;font-size:12px;color:rgba(158,168,189,0.8);z-index:220;pointer-events:none;font-weight:600}
