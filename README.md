@@ -1,27 +1,15 @@
-Calculator Web App
+This is a basic calculator project created solely for learning and practicing programming concepts. The calculator performs fundamental arithmetic operations and serves as an exercise in software development.
 
-- Open `index.html` in a browser to run the calculator.
-- The app uses a simulated payment modal. No real payments.
+# ⚠️ Disclaimer
+This project is created exclusively for educational purposes. It is not intended for commercial use or distribution.
 
-Plans:
-- Basic — $6.70 — 1 calculation — allows + and - only
-- Advanced — $18 — 3 calculations — allows +, -, ×
-- Professional — $36 — 5 calculations — allows +, -, ×, ÷
+# Copyright Notice
+This calculator is a learning project and not meant to infringe on any existing copyrights
+If any content, design, or functionality inadvertently resembles copyrighted material, it is purely coincidental
+Upon notification of any copyright issues, I will promptly address the concern and remove the project if necessary
 
-Behavior:
-- Attempting to compute without a plan opens the pricing modal.
-- Choosing a plan shows "Processing..." for 3 seconds, then "Payment completed".
-- After payment the pending calculation is executed and the plan's credits decrement.
-- Plan state is saved to `localStorage` so refresh will keep credits.
+# 🤝 Contributing
+As this is an educational project, contributions are not expected. However, suggestions for learning improvements are welcome.
 
-Files:
-- `index.html` — UI
-- `styles.css` — styles
-- `script.js` — logic and payment simulation
-
-To test quickly (Windows PowerShell):
-
-```powershell
-# from the project folder
-Start-Process index.html
-```
+# 📄 License
+This project is for educational purposes only and is not licensed for commercial use.
