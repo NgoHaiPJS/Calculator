@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Calculator</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="page">
+    <div class="calculator">
+      <div class="display">
+        <div class="small-display" id="history"></div>
+        <div class="main-display" id="display">0</div>
+      </div>
+
+      <div class="keys">
+        <button class="btn control" id="ce">CE</button>
+        <button class="btn control" id="c">C</button>
+        <div class="spacer"></div>
+        <button class="btn op" data-op="/">÷</button>
+
+        <button class="btn num" data-num="7">7</button>
+        <button class="btn num" data-num="8">8</button>
+        <button class="btn num" data-num="9">9</button>
+        <button class="btn op" data-op="*">×</button>
+
+        <button class="btn num" data-num="4">4</button>
+        <button class="btn num" data-num="5">5</button>
+        <button class="btn num" data-num="6">6</button>
+        <button class="btn op" data-op="-">−</button>
+
+        <button class="btn num" data-num="1">1</button>
+        <button class="btn num" data-num="2">2</button>
+        <button class="btn num" data-num="3">3</button>
+        <button class="btn op main-op" data-op="+">+</button>
+
+        <button class="btn num zero" data-num="0">0</button>
+        <button class="btn num" data-num=".">.</button>
+        <button class="btn equal" id="equals">=</button>
+      </div>
+
+      <div class="status" id="status">No plan chosen</div>
+    </div>
+  </div>
+
+  <!-- Pricing Modal -->
+  <div class="modal" id="modal" aria-hidden="true">
+    <div class="modal-backdrop" id="backdrop"></div>
+    <div class="modal-content" role="dialog" aria-modal="true">
+      <h3 class="modal-title">Choose a plan</h3>
+      <p class="modal-sub">No credit card required</p>
+      <div class="plans">
+        <div class="plan plan-left">
+          <div class="plan-badge">BASIC</div>
+          <div class="plan-price">$18</div>
+          <div class="plan-desc">Per member, one-time</div>
+          <ul class="plan-features">
+            <li>1 Time calculation</li>
+              <li>No multiply / divide</li>
+          </ul>
+          <button class="choose" data-plan="basic">Choose Basic</button>
+        </div>
+
+        <div class="plan plan-center">
+          <div class="fire-badge" aria-hidden="true">🔥</div>
+          <div class="plan-badge">PROFESSIONAL</div>
+          <div class="plan-price">$67</div>
+          <div class="plan-desc">Per member</div>
+          <ul class="plan-features">
+            <li>Access To All Features</li>
+            <li>5 calculations</li>
+            <li>Multiply & Divide enabled</li>
+          </ul>
+          <button class="choose" data-plan="professional">Choose Professional</button>
+        </div>
+
+        <div class="plan plan-right">
+          <div class="plan-badge">ADVANCED</div>
+          <div class="plan-price">$36</div>
+          <div class="plan-desc">Per member</div>
+          <ul class="plan-features">
+            <li>3 calculations</li>
+            <li>Multiply enabled</li>
+          </ul>
+          <button class="choose" data-plan="advanced">Choose Advanced</button>
+        </div>
+      </div>
+
+      <div class="processing" id="processing" hidden>
+        <div id="processText">Processing...</div>
+      </div>
+
+      <button class="modal-close" id="closeModal">Close</button>
+    </div>
+  </div>
+
+  <!-- Dedicated processing full-screen -->
+  <div id="processingScreen" class="screen hidden" aria-hidden="true">
+    <div class="panel processing-panel">
+      <div class="spinner" id="spinner"></div>
+      <h3>Processing Payment</h3>
+      <p>Securely processing your payment...</p>
+    </div>
+  </div>
+
+  <!-- Result screen -->
+  <div id="resultScreen" class="screen hidden" aria-hidden="true">
+    <div class="panel result-panel">
+      <div class="result-title">Your Result</div>
+      <div class="calc-expression" id="resultExpression"></div>
+      <div class="result-box" id="resultValue">0</div>
+      <div class="result-sub">Thank you for your purchase</div>
+      <button id="calcAgain" class="choose">Calculate Again</button>
+    </div>
+  </div>
+
+  <!-- small signature -->
+  <div class="signature">Hải Anh | Made with C#, JS and HTML</div>
+
+  <script src="app.js"></script>
+</body>
+</html>
