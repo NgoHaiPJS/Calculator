@@ -5,6 +5,11 @@ on:
     branches:
       - main
 
+# Request explicit workflow permission to write repository contents so the deploy
+# action (which pushes to gh-pages) can create/update the branch.
+permissions:
+  contents: write
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
